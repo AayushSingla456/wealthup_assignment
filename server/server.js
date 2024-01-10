@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-
+require("dotenv").config();
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 4000;
 
-mongoose.connect(
-  "mongodb+srv://wealth:wealth@cluster0.hjibtxj.mongodb.net/wealth",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 
 db.once("open", () => {
